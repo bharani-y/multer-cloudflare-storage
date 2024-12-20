@@ -16,7 +16,7 @@ class CloudflareStorage implements StorageEngine {
 
     public _handleFile(_req: Request, file: Express.Multer.File, callback: CallbackFunction): void {
         const body = new FormData();
-        body.append("file", file.stream, file.originalname);
+        body.append("file", file.stream, Date.now().toString() + file.originalname);
         void this._uploadFile(body, callback);
     }
 
