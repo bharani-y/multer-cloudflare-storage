@@ -27,7 +27,7 @@
         "lint": "npx eslint src/ --ext .ts,.js",
         "lint:fix": "npm run lint -- --fix",
         "prepublishOnly": "npm run lint && npx rimraf dist/ && npm run build",
-        "prepare": "husky install",
+        "prepare": "npm run build",
         "prettier": "prettier --write **/*.{ts,js,json,yml,yaml}"
     },
     "devDependencies": {
