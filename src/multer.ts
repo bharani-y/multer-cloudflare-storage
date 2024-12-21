@@ -2,7 +2,6 @@ import fetch from "node-fetch";
 import FormData from "form-data";
 import type { StorageEngine } from "multer";
 import type { Request } from "express";
-import type { CloudflareCDNUploadResponse } from "./typings";
 
 type CallbackFunction = (error: Error | null, info?: Partial<Express.Multer.File>) => void;
 
