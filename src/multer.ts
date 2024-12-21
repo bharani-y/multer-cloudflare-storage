@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import FormData from "form-data";
 import type { StorageEngine } from "multer";
 import type { Request } from "express";
-interface CloudflareCDNUploadResponse<T = string[]> {
+type CloudflareCDNUploadResponse<T = string[]> {
     success: boolean;
     errors: {
         code: number;
