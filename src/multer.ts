@@ -2,7 +2,23 @@ import fetch from "node-fetch";
 import FormData from "form-data";
 import type { StorageEngine } from "multer";
 import type { Request } from "express";
-
+interface CloudflareCDNUploadResponse<T = string[]> {
+    success: boolean;
+    errors: {
+        code: number;
+        message: string;
+    }[];
+    result: {
+        id: string;
+        filename: string;
+        metadata: {
+            meta: string;
+        };
+        requireSignedURLs: boolean;
+        variants: T;
+        uploaded: string;
+    };
+}
 type CallbackFunction = (error: Error | null, info?: Partial<Express.Multer.File>) => void;
 
 class CloudflareStorage implements StorageEngine {
@@ -33,7 +49,7 @@ class CloudflareStorage implements StorageEngine {
             body
         })
 
-        const response: Object = await request.json();
+        const response: CloudflareCDNUploadResponse = await request.json();
         if (request.ok) {
             return callback(null, {
                 path: response.result.variants[0],
