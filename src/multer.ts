@@ -34,7 +34,7 @@ class CloudflareStorage implements StorageEngine {
             body
         })
 
-        const response: CloudflareCDNUploadResponse = await request.json();
+        const response: Object = await request.json();
         if (request.ok) {
             return callback(null, {
                 path: response.result.variants[0],
